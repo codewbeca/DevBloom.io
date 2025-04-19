@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevBloom🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #ffe0f0, #e5f0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #4b4b4b;
+      text-align: center;
+    }
+
+    header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #ff80ab;
+    }
+
+    .affirmation {
+      background-color: #ffffffc2;
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 500px;
+      box-shadow: 0 4px 20px rgba(255, 182, 193, 0.3);
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.button-group button {
+  background-color: #fcd3e1;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+}
+
+.button-group button:hover {
+  background-color: #fabed7;
+}
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    .hearts-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ffb6c1;
+  opacity: 0.6;
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-45deg);
+  animation: float 10s linear infinite;
+}
+
+.heart::after,
+.heart::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ffb6c1;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    bottom: -50px;
+    left: calc(100% * var(--i));
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+    transform: scale(1) rotate(-45deg);
+  }
+}
+
+/* Randomize animation delays and positions */
+.heart:nth-child(1) { --i: 0.1; animation-delay: 0s; }
+.heart:nth-child(2) { --i: 0.3; animation-delay: 2s; }
+.heart:nth-child(3) { --i: 0.5; animation-delay: 4s; }
+.heart:nth-child(4) { --i: 0.7; animation-delay: 1s; }
+.heart:nth-child(5) { --i: 0.9; animation-delay: 3s; }
+
+  </style>
+</head>
+<body>
+  <div class="hearts-container">
+    <span class="heart"></span>
+    <span class="heart"></span>
+    <span class="heart"></span>
+    <span class="heart"></span>
+    <span class="heart"></span>
+  </div>
+
+  <header>
+    Welcome to DevBloom <br>
+    A daily bloom of confidence for coders
+  </header>
+
+  <div class="affirmation" id="affirmation">
+    “You are not your bugs. You are a problem-solver with glitter in her code.”
+  </div>
+
+  <div class="button-group">
+  <button onclick="newAffirmation()">✨ Show Me Another</button>
+  <button onclick="saveAffirmationAsPDF()">💾 Save This Affirmation</button>
+  </div>
+  <footer>
+    Made with pastel pixels & 💻 magic by Beca | DevBloom 2025
+  </footer>
+
+  <script>
+    const affirmations = [
+  "You are learning every day — that's what real developers do.",
+  "Your code doesn't need to be perfect; it just needs to keep going.",
+  "You belong in tech — your creativity is your superpower.",
+  "Every bug you fix is a badge of growth. Keep debugging, keep shining.",
+  "You are a web developer. You bring ideas to life with code.",
+  "Progress over perfection. You're doing amazing.",
+  "Even when it's hard, you're still building your future, line by line.",
+  "Trust the process — your logic is getting stronger with every step.",
+  "You're not falling behind. You're finding your rhythm.",
+  "Your code has value. Your presence in tech matters.",
+  "There's space for you here — take up all of it, unapologetically.",
+  "You are enough. You are capable. You are becoming.",
+  "You write code, but you're really building confidence — one function at a time.",
+  "Even when you're stuck, your brain is still wiring new paths. That's growth.",
+  "A slow day of coding is still a step forward — rest is part of the build too.",
+  "Every time you read an error, you're learning a new way to think.",
+  "You're allowed to not know everything. Curiosity is your greatest skill.",
+  "You don't have to be the fastest — just stay in the loop. That's how momentum is made.",
+  "You're writing more than code. You're writing your story in tech.",
+  "The bugs don't define you. The fact that you keep going does.",
+  "You are not behind. You're exactly where you're meant to debug and bloom.",
+  "Imposter syndrome is just proof you're leveling up — let it be a signpost, not a stop sign.",
+  "Even the best developers Google things. Resourcefulness *is* intelligence.",
+  "You're building logic and beauty at the same time. That's powerful.",
+  "Your brain is processing more than you realize. The aha moment is coming.",
+  "Real coders don't have all the answers. They keep asking better questions.",
+  "You are building in silence, but your progress is loud to the future you.",
+  "Every HTML tag, every CSS tweak, every commit — it all adds up. Keep going.",
+  "You don't need permission to belong in tech. You already do.",
+  "Being confused means you're learning something new. That's the point.",
+  "There's nothing soft about persistence. Keep showing up for your dreams.",
+  "You're allowed to love pink *and* write strong logic. You're allowed to be both.",
+  "Learning to code isn't linear — some days are loops, but you're still moving forward.",
+  "Your value isn't tied to your GitHub contributions. You're growing in ways that don't show up in commits.",
+  "Even one line of good code is a win. Celebrate the small victories.",
+  "You dont have to master everything — just keep mastering your mindset.",
+  "You're turning syntax into dreams. That's magic with logic.",
+  "You're already the tech role model younger you needed."
+  ];
+
+    function newAffirmation() {
+      const index = Math.floor(Math.random() * affirmations.length);
+      document.getElementById('affirmation').innerText = affirmations[index];
+    }
+
+    async function saveAffirmationAsPDF() {
+  const { jsPDF } = window.jspdf;
+
+  // Capture the affirmation box
+  const element = document.body;
+
+  // Create canvas from that section
+  html2canvas(element).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: [canvas.width, canvas.height]
+    });
+
+    pdf.addImage(imgData, "PNG", 0, 0);
+    const filename = `dev-affirmation-${Date.now()}.pdf`;
+    pdf.save(filename);
+  });
+}
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>  
+</body>
+</html>
